@@ -61,3 +61,17 @@ select bond_code, `open`,`high`,`date`,
               )  AS rank
                from kezhuanzhai_data JOIN (SELECT @curRow := 0, @curType := '') r
   order by bond_code, `date`
+
+  CREATE TABLE `stock_day` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `date` datetime DEFAULT NULL,
+  `close` decimal(10,2) DEFAULT NULL,
+  `high` decimal(10,2) DEFAULT NULL,
+  `low` decimal(10,2) DEFAULT NULL,
+  `open` decimal(10,2) DEFAULT NULL,
+  `volume` decimal(10,2) DEFAULT NULL COMMENT '成交量(股)\n',
+  `outstanding_share` decimal(10,2) DEFAULT NULL COMMENT '流动股本(股)\n',
+  `turnover` decimal(10,2) DEFAULT NULL COMMENT '换手率=成交量(股)/流动股本(股)\n',
+  `stock_code` varchar(45) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='股票每天的开、高、低、收价格';
